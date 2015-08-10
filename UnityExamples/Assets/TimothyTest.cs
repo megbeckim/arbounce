@@ -4,7 +4,7 @@ using System.Collections;
 public class TimothyTest : MonoBehaviour {
 	public TangoPointCloud m_tangoPointCloud;
 	public Camera m_camera;
-	public Plane m_bounceSurface;
+	public GameObject m_bounceSurface;
 
 	// Use this for initialization
 	void Start () {
