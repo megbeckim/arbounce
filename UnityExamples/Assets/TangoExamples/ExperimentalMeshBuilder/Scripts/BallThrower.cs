@@ -41,7 +41,6 @@ public class BallThrower : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-    
         if (Input.GetKeyDown (KeyCode.Space)) {
             ballArray[currentBallID].transform.position = mainCamera.transform.position - mainCamera.transform.up*ballPrefab.transform.localScale.y;
             ballArray[currentBallID].GetComponent<Rigidbody>().velocity = mainCamera.transform.forward * forwardVelocity + mainCamera.transform.up*forwardVelocity/2;
