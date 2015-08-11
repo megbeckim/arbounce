@@ -13,12 +13,27 @@ public class TimothyTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("pos " + m_camera.transform.position);
-		Debug.Log ("fwd " + m_camera.transform.forward);
+//		Debug.Log ("pos " + m_camera.transform.position);
+//		Debug.Log ("fwd " + m_camera.transform.forward);
 
 		Vector3 nearest = Vector3.zero;
 		Vector3 p1 = m_camera.transform.position;
 		Vector3 p2 = m_camera.transform.position + m_camera.transform.forward;
+
+		Vector3 t1 = m_camera.transform.position + m_camera.transform.forward * 5 + m_camera.transform.up/5;
+		Vector3 t2 = m_camera.transform.position + m_camera.transform.forward * 5 + m_camera.transform.right/5;
+		Vector3 t3 = m_camera.transform.position + m_camera.transform.forward * 5 + m_camera.transform.up/5 + m_camera.transform.right/5;
+
+//		GameObject dummyGameObject = GameObject.CreatePrimitive (PrimitiveType.Plane);
+//		dummyGameObject.
+//		Plane dummyPlane = new Plane (t1, t2, t3);
+		Vector3 normal = Vector3.Cross (t1 - t3, t2 - t3);
+		m_bounceSurface.transform.rotation = Quaternion.FromToRotation (Vector3.up, -normal);
+
+		m_bounceSurface.transform.position = (t1 + t2 + t3) / 3;
+
+		return;
+
 		double minDistance = double.MaxValue;
 		int nearestIndex = 0;
 		for (int index = 0; index < m_tangoPointCloud.m_pointsCount; index++) {
