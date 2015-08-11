@@ -1,7 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TimothyTest : MonoBehaviour {
+
+	public class DistanceAndPoint {
+		public Vector3 point;
+		public double distance;
+
+		public DistanceAndPoint(double aDistance, Vector3 aPoint) {
+			this.point = aPoint;
+			this.distance = aDistance;
+		}
+	}
+
 	public TangoPointCloud m_tangoPointCloud;
 	public Camera m_camera;
 	public GameObject m_bounceSurface;
@@ -29,19 +41,43 @@ public class TimothyTest : MonoBehaviour {
 
 //		return;
 
-		double minDistance = double.MaxValue;
-		int nearestIndex = 0;
+		List<DistanceAndPoint> distancesAndPoints = new List<DistanceAndPoint>();
+
+//		double minDistance = double.MaxValue;
+//		int nearestIndex = 0;
 		for (int index = 0; index < m_tangoPointCloud.m_pointsCount; index++) {
 			Vector3 p0 = m_tangoPointCloud.m_points[index];
 			double distance = Vector3.Cross(p0 - p1, p0 - p2).magnitude;
-			if (distance < minDistance) {
-				minDistance = distance;
-				nearest = p0;
-				nearestIndex = index;
-			}
+			distancesAndPoints.Add(new DistanceAndPoint (distance, p0) );
+//			if (distance < minDistance) {
+//				minDistance = distance;
+//				nearest = p0;
+//				nearestIndex = index;
+//			}
 		}
 
-		Debug.Log ("middle (" + nearestIndex + ") " + nearest);
-		m_bounceSurface.transform.position = nearest;
+		distancesAndPoints.Sort (delegate(DistanceAndPoint o1, DistanceAndPoint o2)
+		                         { 
+			if (o2.distance > o1.distance)
+				return -1;
+			else if (o2.distance < o1.distance)
+				return 1;
+			else 
+				return 0;
+
+		});
+
+		
+		Vector3 c1 = distancesAndPoints[0].point;
+		Vector3 c2 = distancesAndPoints[1].point;
+		Vector3 c3 = distancesAndPoints[2].point;
+
+		Vector3 cNormal = Vector3.Cross (c1 - c3, c2 - c3);
+		m_bounceSurface.transform.rotation = Quaternion.FromToRotation (Vector3.up, -cNormal);
+		
+		m_bounceSurface.transform.position = (c1 + c2 + c3) / 3;
+
+//		Debug.Log ("middle (" + nearestIndex + ") " + nearest);
+//		m_bounceSurface.transform.position = nearest;
 	}
 }
