@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class KillButterfly : MonoBehaviour {
+	public Camera m_camera;
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +15,6 @@ public class KillButterfly : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Destroy (this.gameObject);
+		this.gameObject.transform.position = m_camera.transform.position - m_camera.transform.right * 1;
 	}
 }

@@ -22,38 +22,30 @@ public class TimothyTest : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			updateBounceSurface ();
+		}
+		
+		for (var i = 0; i < Input.touchCount; ++i) {
+			updateBounceSurface ();
+		}
+	}
 
-//		Vector3 nearest = Vector3.zero;
+	private void updateBounceSurface() {
+
 		Vector3 p1 = m_camera.transform.position;
 		Vector3 p2 = m_camera.transform.position + m_camera.transform.forward;
 
-//		Vector3 t1 = m_camera.transform.position + m_camera.transform.forward * 5 + m_camera.transform.up/5;
-//		Vector3 t2 = m_camera.transform.position + m_camera.transform.forward * 5 + m_camera.transform.right/5;
-//		Vector3 t3 = m_camera.transform.position + m_camera.transform.forward * 5 + m_camera.transform.up/5 + m_camera.transform.right/5;
-
-//		Vector3 normal = Vector3.Cross (t1 - t3, t2 - t3);
-//		m_bounceSurface.transform.rotation = Quaternion.FromToRotation (Vector3.up, -normal);
-//
-//		m_bounceSurface.transform.position = (t1 + t2 + t3) / 3;
-
-//		return;
-
 		List<DistanceAndPoint> distancesAndPoints = new List<DistanceAndPoint>();
 
-//		double minDistance = double.MaxValue;
-//		int nearestIndex = 0;
 		for (int index = 0; index < m_tangoPointCloud.m_pointsCount; index++) {
 			Vector3 p0 = m_tangoPointCloud.m_points[index];
 			double distance = Vector3.Cross(p0 - p1, p0 - p2).magnitude;
 			distancesAndPoints.Add(new DistanceAndPoint (distance, p0) );
-//			if (distance < minDistance) {
-//				minDistance = distance;
-//				nearest = p0;
-//				nearestIndex = index;
-//			}
 		}
 
 		distancesAndPoints.Sort (delegate(DistanceAndPoint o1, DistanceAndPoint o2) { 
@@ -77,8 +69,5 @@ public class TimothyTest : MonoBehaviour {
 		m_bounceSurface.transform.rotation = Quaternion.FromToRotation (Vector3.up, -cNormal);
 		
 		m_bounceSurface.transform.position = (c1 + c2 + c3) / 3;
-
-//		Debug.Log ("middle (" + nearestIndex + ") " + nearest);
-//		m_bounceSurface.transform.position = nearest;
 	}
 }
