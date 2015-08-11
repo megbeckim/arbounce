@@ -24,7 +24,7 @@ using System.Collections;
 public class BallThrower : MonoBehaviour {
     public GameObject ballPrefab;
     public Camera mainCamera;
-    float forwardVelocity = 5.0f;
+    float forwardVelocity = 1.0f;
     
     GameObject[] ballArray = new GameObject[10];
     int currentBallID = 0;

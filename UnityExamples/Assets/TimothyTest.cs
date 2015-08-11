@@ -64,7 +64,11 @@ public class TimothyTest : MonoBehaviour {
 			else 
 				return 0;
 		});
-		
+
+		if (distancesAndPoints.Count == 0) {
+			return;
+		}
+
 		Vector3 c1 = distancesAndPoints[0].point;
 		Vector3 c2 = distancesAndPoints[1].point;
 		Vector3 c3 = distancesAndPoints[2].point;
