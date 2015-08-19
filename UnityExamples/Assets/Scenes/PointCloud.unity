@@ -722,26 +722,7 @@ Transform:
   - {fileID: 804168192}
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!1 &2119417404 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 108452, guid: 5f59b9945461344cebfcccf17cdc53f9, type: 2}
-  m_PrefabInternal: {fileID: 1262207285}
 --- !u!4 &2119417407 stripped
 Transform:
   m_PrefabParentObject: {fileID: 499408, guid: 5f59b9945461344cebfcccf17cdc53f9, type: 2}
   m_PrefabInternal: {fileID: 1262207285}
---- !u!114 &2119417408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2119417404}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45ec769e5fd08449ba19d8c0241fecf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tangoPointCloud: {fileID: 1262207286}
-  m_camera: {fileID: 813931132}
-  m_bounceSurfacePrefab: {fileID: 100000, guid: 6a75e02dcb5054c2b852ea16a2a86705,
-    type: 2}
