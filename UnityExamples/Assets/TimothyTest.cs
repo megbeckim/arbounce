@@ -42,7 +42,7 @@ public class TimothyTest : MonoBehaviour {
 			}
 		}
 
-		m_reticle.SetActive (m_onTarget);
+		m_reticle.GetComponent<Renderer> ().material.color = m_onTarget ? Color.green : Color.red;
 	}
 	
 	private void updateTargetPositionAndRotation() {
