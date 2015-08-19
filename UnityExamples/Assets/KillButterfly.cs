@@ -15,6 +15,8 @@ public class KillButterfly : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		this.gameObject.transform.position = m_camera.transform.position - m_camera.transform.right * 1;
+		if (other.CompareTag ("Ball")) {
+			this.gameObject.transform.position = m_camera.transform.position - m_camera.transform.right * 1;
+		}
 	}
 }
