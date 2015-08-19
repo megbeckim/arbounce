@@ -16,7 +16,7 @@ public class TimothyTest : MonoBehaviour {
 
 	public TangoPointCloud m_tangoPointCloud;
 	public Camera m_camera;
-	public GameObject m_bounceSurface;
+	public GameObject m_bounceSurfacePrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +31,9 @@ public class TimothyTest : MonoBehaviour {
 		}
 		
 		for (var i = 0; i < Input.touchCount; ++i) {
-			updateBounceSurface ();
+			if (Input.GetTouch(i).phase == TouchPhase.Began) {
+				updateBounceSurface ();
+			}
 		}
 	}
 
@@ -66,6 +68,10 @@ public class TimothyTest : MonoBehaviour {
 		Vector3 c3 = distancesAndPoints[2].point;
 
 		Vector3 cNormal = Vector3.Cross (c1 - c3, c2 - c3);
+
+		GameObject m_bounceSurface = (GameObject)Instantiate (m_bounceSurfacePrefab);
+		m_bounceSurface.SetActive (true);
+
 		m_bounceSurface.transform.rotation = Quaternion.FromToRotation (Vector3.up, -cNormal);
 		
 		m_bounceSurface.transform.position = (c1 + c2 + c3) / 3;
