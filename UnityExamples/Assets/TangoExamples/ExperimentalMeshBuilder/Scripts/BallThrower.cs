@@ -16,7 +16,7 @@
 
 using UnityEngine;
 using System.Collections;
-
+using System;
 /**
  * Class for throwing balls
  */    
@@ -27,6 +27,7 @@ public class BallThrower : MonoBehaviour {
     float forwardVelocity = 2.5f;
     
     GameObject[] ballArray = new GameObject[10];
+
     int currentBallID = 0;
     
     // Use this for initialization
@@ -48,14 +49,27 @@ public class BallThrower : MonoBehaviour {
             currentBallID = (currentBallID + 1)%ballArray.Length;
         }
 
+		bool touchDone = false;
         for (var i = 0; i < Input.touchCount; ++i) {
-            if (Input.GetTouch(i).phase == TouchPhase.Began) {
+            if ((Input.GetTouch(i).phase == TouchPhase.Began) && (touchDone == false)) {
 
                 ballArray[currentBallID].transform.position = mainCamera.transform.position;
                 ballArray[currentBallID].GetComponent<Rigidbody>().velocity = mainCamera.transform.forward * forwardVelocity;
                 ballArray[currentBallID].SetActive(true);
                 currentBallID = (currentBallID + 1)%ballArray.Length;
+				touchDone = true;
             }
         }
+
+		for (var i=0; i < 10; ++i) {
+			if ( (ballArray[i].GetComponent<Rigidbody>().position.x > 10) || 
+					(ballArray[i].GetComponent<Rigidbody>().position.y > 10) ||
+					(ballArray[i].GetComponent<Rigidbody>().position.z > 10) ) {
+				ballArray[i].SetActive(false);
+			}
+
+		}
+
+	
     }
 }
