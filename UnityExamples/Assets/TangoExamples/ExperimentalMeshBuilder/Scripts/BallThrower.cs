@@ -26,7 +26,7 @@ public class BallThrower : MonoBehaviour {
     public Camera mainCamera;
     float forwardVelocity = 2.5f;
     
-    GameObject[] ballArray = new GameObject[10];
+    GameObject[] ballArray = new GameObject[3];
 
     int currentBallID = 0;
     
@@ -61,7 +61,7 @@ public class BallThrower : MonoBehaviour {
             }
         }
 
-		for (var i=0; i < 10; ++i) {
+		for (var i=0; i < 3; ++i) {
 			if ( (ballArray[i].GetComponent<Rigidbody>().position.x > 10) || 
 					(ballArray[i].GetComponent<Rigidbody>().position.y > 10) ||
 					(ballArray[i].GetComponent<Rigidbody>().position.z > 10) ) {
