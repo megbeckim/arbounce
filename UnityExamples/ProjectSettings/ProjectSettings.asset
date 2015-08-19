@@ -9,8 +9,8 @@ PlayerSettings:
   targetDevice: 2
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: Project Tango
-  productName: Unity Examples
+  companyName: Skylight1
+  productName: AR Bounce
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -125,7 +125,7 @@ PlayerSettings:
   AndroidKeyaliasName: 
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
-  androidEnableBanner: 1
+  androidEnableBanner: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -139,7 +139,7 @@ PlayerSettings:
       m_Size: 128
   - m_BuildTarget: Android
     m_Icons:
-    - m_Icon: {fileID: 0}
+    - m_Icon: {fileID: 2800000, guid: 5f4b702816a3e4005b46860a318793bc, type: 3}
       m_Size: 192
     - m_Icon: {fileID: 0}
       m_Size: 144
